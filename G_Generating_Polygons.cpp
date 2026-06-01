@@ -1,5 +1,5 @@
-// //https://codeforces.com/gym/105873/problem/G
-// //1900
+//https://codeforces.com/gym/105873/problem/G
+//1900
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first

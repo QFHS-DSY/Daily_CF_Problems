@@ -1,3 +1,5 @@
+//https://codeforces.com/gym/105059/problem/C
+//1700
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first
