@@ -1,5 +1,3 @@
-//https://codeforces.com/gym/105010/problem/D
-//1600
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first
@@ -21,14 +19,10 @@ signed main()
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
 
-    int n,k,m=0;cin>>n>>k;
-    vector<int> a(n+1);
-    for(int i=1;i<=n;++i) {
-        cin>>a[i],a[i]%=k;
-        if (a[i]!=0) m++;
-    }
-
-
+    int T;
+    cin>>T;
+    while(T--)
+        solve();
 
     return 0;
 }
