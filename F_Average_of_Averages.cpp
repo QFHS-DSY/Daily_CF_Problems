@@ -13,13 +13,18 @@ typedef long long ll;
 
 inline void solve()
 {
+    int n;cin>>n;
+    vector<int> a(n+1);
+    for (int i=1;i<=n;++i) cin>>a[i];
+
+    
 }
 
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr), cout.tie(nullptr);
-    //cout<<fixed<<setprecision(15);
+    cout<<fixed<<setprecision(15);
 
     int T;
     cin>>T;

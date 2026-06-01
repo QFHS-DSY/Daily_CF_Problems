@@ -1,4 +1,5 @@
 //https://codeforces.com/gym/105315/problem/H
+//260527
 //1400
 #include <bits/stdc++.h>
 #define endl '\n'
@@ -7,30 +8,35 @@
 #define PII pair<int, int>
 #define INF 0x3f3f3f3f
 #define LLINF 0x3f3f3f3f3f3f3f3fLL
-// #define int long long
+#define int long long
 using namespace std;
 typedef long long ll;
 
 inline void solve()
 {
     int n,k;cin>>n>>k;
-    vector<ll> a(n),b(n);
-    for (int i=0;i<n;++i) cin>>a[i]>>b[i];
+    vector<pair<int,ll>> a(n+1);
+    for (int i=1;i<=n;++i) cin>>a[i].fi>>a[i].se;
 
-    ll ans=0;
-    vector<vector<PII>> dp(n,vector<PII> (n+1));
-    priority_queue<ll> pq1;
-    priority_queue<ll,vector<ll>,greater<ll>> pq2;
-    map<ll,int> mp1,mp2;
-    for (int i=0;i<k;++i) {
-        ans+=a[i];
-        pq2.push(a[i]);
-        pq1.push(b[i]);
+    sort(a.begin()+1,a.end(),
+        [&](pair<int,ll> x,pair<int,ll> y){return x.se<y.se;});
+
+    priority_queue<int,vector<int>,greater<int>> pq;
+    ll ans=LLONG_MIN,cur=0;
+    for (int i=1;i<k;++i) {
+        cur+=a[i].fi;
+        pq.push(a[i].fi);
     }
 
-    ans-=pq1.top();
-    for (int i=k;i<n;++i) {
+    for (int i=k;i<=n;++i) {
+        ans=max(ans,cur+a[i].fi-a[i].se);
+        cur+=a[i].fi;
+        pq.push(a[i].fi);
+        cur-=pq.top();
+        pq.pop();
     }
+
+    cout<<ans<<endl;
 }
 
 signed main()

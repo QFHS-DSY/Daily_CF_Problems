@@ -1,5 +1,6 @@
 //https://codeforces.com/gym/104782/problem/I
-//1300
+//260601
+//1500
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first
