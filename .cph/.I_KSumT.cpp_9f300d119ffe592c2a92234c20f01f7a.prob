@@ -1,0 +1,1 @@
+{"name":"Local: I_KSumT","url":"/Users/dsy/Desktop/ACM/Daily_CF_Problems/I_KSumT.cpp","tests":[{"id":1780291138850,"input":"5 13 3\n","output":"15"},{"id":1780291142490,"input":"15 44 9\n","output":"1162800"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/dsy/Desktop/ACM/Daily_CF_Problems/I_KSumT.cpp","group":"local","local":true}
