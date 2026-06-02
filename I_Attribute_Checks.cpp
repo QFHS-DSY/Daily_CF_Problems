@@ -1,4 +1,5 @@
 //https://codeforces.com/gym/105437/problem/I
+//260526
 //1700
 #include <bits/stdc++.h>
 #define endl '\n'

@@ -1,5 +1,6 @@
 //https://codeforces.com/gym/105873/problem/G
-//1900
+//260525 260526
+//1800 1900
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first
