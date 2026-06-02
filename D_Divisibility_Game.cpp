@@ -1,4 +1,5 @@
 //https://codeforces.com/gym/105010/problem/D
+//260530
 //1600
 #include <bits/stdc++.h>
 #define endl '\n'
@@ -11,24 +12,21 @@
 using namespace std;
 typedef long long ll;
 
-inline void solve()
-{
-}
-
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
-
-    int n,k,m=0;cin>>n>>k;
-    vector<int> a(n+1);
-    for(int i=1;i<=n;++i) {
-        cin>>a[i],a[i]%=k;
-        if (a[i]!=0) m++;
+    
+    int n,k,c=0;cin>>n>>k;
+    for (int i=1,x;i<=n;++i) {
+        cin>>x;
+        if (x%k!=0) c++;
     }
 
-
-
+	if (c==0) cout<<"Rami"<<endl;
+	else if (c==2) cout<<"Oussama"<<endl;
+	else cout<<((n&1) ? "Rami" : "Oussama")<<endl;
+    
     return 0;
 }
