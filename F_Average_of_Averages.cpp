@@ -10,15 +10,29 @@
 #define LLINF 0x3f3f3f3f3f3f3f3fLL
 // #define int long long
 using namespace std;
-typedef long long ll;
+using ll=long long;
+using ld=long double;
 
 inline void solve()
 {
     int n;cin>>n;
-    vector<int> a(n+1);
-    for (int i=1;i<=n;++i) cin>>a[i];
+    vector<ld> a(n+1),pre(n+1,0),p(n+1,0);
+    for (int i=1;i<=n;++i) {
+        cin>>a[i];
+        pre[i]=pre[i-1]+a[i];
+        p[i]=p[i-1]+pre[i];
+    }
 
+    ld ans=0;
+    for (int i=1;i<=n;++i) {
+        ld tmp=p[n]-p[i-1];
+        tmp-=p[n-i];
+        ans+=tmp/(ld)i;
+    }
     
+    ans*=2;
+    ans/=(ld)n*(ld)(n+1);
+    cout<<ans<<endl;
 }
 
 signed main()
