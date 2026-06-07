@@ -12,8 +12,41 @@
 using namespace std;
 typedef long long ll;
 
+const int MOD=998244353;
+
+vector<int> prep(const string &s) {
+	int n=s.size();
+	vector<int> pi(n);
+	for (int i=1;i<n;++i) {
+		int j=pi[i-1];
+		while (j>0 && s[i]!=s[j])
+			j=pi[j-1];
+		if (s[i]==s[j]) j++;
+		pi[i]=j;
+	}
+	return pi;
+}
+
 inline void solve()
 {
+	int n, k;
+	string s;
+	cin>>n>>k>>s;
+
+	auto kmp=prep(s);
+
+	vector<int> dp(k+1,0);
+	dp[0]=1;
+
+	for (int i=0;i<k;i++) {
+		for (int j=0;j<n;++j) {
+			if (!kmp[j] && i+j+1<=k) {
+				dp[i+j+1]=(dp[i+j+1]+dp[i])%MOD;
+			}
+		}
+	}
+
+	cout<<dp[k]<<endl;
 }
 
 signed main()

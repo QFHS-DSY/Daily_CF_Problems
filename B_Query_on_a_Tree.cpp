@@ -8,23 +8,57 @@
 #define PII pair<int, int>
 #define INF 0x3f3f3f3f
 #define LLINF 0x3f3f3f3f3f3f3f3fLL
-// #define int long long
+#define int long long
 using namespace std;
 using ll=long long;
 using ld=long double;
 
 constexpr int MAXN=250005;
 vector<int> g[MAXN];
-int fa[MAXN], dsu[MAXN], sz[MAXN], vis[MAXN];
+int fa[MAXN],vis[MAXN];
 
-int find(int x)
-{
-    while (dsu[x]!=x) {
-        dsu[x]=dsu[dsu[x]];
-        x=dsu[x];
+struct DSU {
+    vector<int> fa, p, e, f;
+
+    DSU(int n) {
+        fa.resize(n + 1);
+        iota(fa.begin(), fa.end(), 0);
+        p.resize(n + 1, 1);
+        e.resize(n + 1);
+        f.resize(n + 1);
     }
-    return x;
-}
+    int get(int x) {
+        while (x != fa[x]) {
+            x = fa[x] = fa[fa[x]];
+        }
+        return x;
+    }
+    bool merge(int x, int y) { // 设x是y的祖先
+        if (x == y) f[get(x)] = 1;
+        x = get(x), y = get(y);
+        e[x]++;
+        if (x == y) return false;
+        if (x < y) swap(x, y); // 将编号小的合并到大的上
+        fa[y] = x;
+        f[x] |= f[y], p[x] += p[y], e[x] += e[y];
+        return true;
+    }
+    void reset(int x) {
+        fa[x]=x,p[x]=1,e[x]=0,f[x]=0;
+    }
+    bool same(int x, int y) {
+        return get(x) == get(y);
+    }
+    bool F(int x) { // 判断连通块内是否存在自环
+        return f[get(x)];
+    }
+    int size(int x) { // 输出连通块中点的数量
+        return p[get(x)];
+    }
+    int E(int x) { // 输出连通块中边的数量
+        return e[get(x)];
+    }
+};
 
 signed main()
 {
@@ -33,49 +67,52 @@ signed main()
     //cout<<fixed<<setprecision(15);
 
     int n;cin>>n;
+    DSU dsu(n);
     for (int i=1,u,v;i<n;++i) {
         cin>>u>>v;
         g[u].emplace_back(v);
         g[v].emplace_back(u);
     }
 
-    vector<int> st{1};
-    fa[1]=0;
-    for (int i=0;i<(int)st.size();++i) {
-        int u=st[i];
-        for (auto v:g[u]) {
-            if (v==fa[u]) continue;
-            fa[v]=u;
-            st.emplace_back(v);
+    auto dfs=[&](auto &self,int x,int y) -> void {
+        fa[x]=y;
+        for (auto z : g[x]) {
+            if (z!=y) self(self,z,x);
         }
-    }
+    };
+
+    dfs(dfs,1,0);
 
     int q;cin>>q;
-    vector<int> a;
-    for (int id=1;id<=q;++id) {
+    while (q--) {
         int k;cin>>k;
-        a.resize(k);
-        for (auto &x:a) {
+        vector<int> a(k);
+        for (auto &x : a) {
             cin>>x;
-            vis[x]=id;
-            dsu[x]=x;
-            sz[x]=1;
+            vis[x]=1;
+        }
+
+        for (auto x : a) {
+            if (vis[fa[x]]) {
+                dsu.merge(x,fa[x]);
+                dsu.get(x);
+            }
         }
 
         ll ans=0;
-        for (auto x:a) {
-            if (fa[x]&&vis[fa[x]]==id) {
-                int rx=find(x), ry=find(fa[x]);
-                if (rx!=ry) {
-                    ans+=1LL*sz[rx]*sz[ry];
-                    dsu[rx]=ry;
-                    sz[ry]+=sz[rx];
-                }
+        for (auto x : a) {
+            if (x==dsu.get(x)) {
+                int c=dsu.size(x);
+                ans+=(c-1)*c/2;
             }
         }
+
         cout<<ans<<endl;
+
+        for (auto x : a) {
+            dsu.reset(x);
+            vis[x]=0;
+        }
     }
-
-
     return 0;
 }
