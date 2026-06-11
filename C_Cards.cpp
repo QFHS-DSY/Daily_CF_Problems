@@ -1,6 +1,6 @@
-//https://codeforces.com/gym/102416/problem/E
-//260609
-//1600
+//https://codeforces.com/gym/105383/problem/C
+//260610
+//2300
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first
@@ -13,22 +13,11 @@ using namespace std;
 using ll=long long;
 using ld=long double;
 
-struct e {
-    ll x,y,z,r,id;
-};
-
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
-
-    int n;cin>>n;
-    vector<e> g(n);
-    for (int i=0;i<n;++i) {
-        cin>>g[i].x>>g[i].y>>g[i].z>>g[i].r;
-        g[i].id=i+1;
-    }
 
     return 0;
 }
