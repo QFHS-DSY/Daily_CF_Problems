@@ -15,6 +15,15 @@ using ld=long double;
 
 inline void solve()
 {
+    int n,k,w=0;cin>>n>>k;
+
+    if (n==2) {
+		if ((k&-k)==k) cout<<1<<endl;
+		else cout<<0<<endl;
+    } else if (3*n-2*k-1>0) cout<<(3*n-2*k-1)<<endl;
+    else if (n&1) cout<<0<<endl;
+    else if ((k-3*n/2)==1) cout<<1<<endl;
+    else cout<<0<<endl;
 }
 
 signed main()
