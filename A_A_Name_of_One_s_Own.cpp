@@ -1,5 +1,5 @@
-//https://codeforces.com/gym/105706/problem/A
-//260617
+//https://codeforces.com/gym/106607/problem/A
+//260701
 //1800
 #include <bits/stdc++.h>
 #define endl '\n'

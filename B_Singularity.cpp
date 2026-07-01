@@ -1,6 +1,6 @@
-//https://codeforces.com/gym/105706/problem/A
-//260617
-//1800
+//https://codeforces.com/gym/106607/problem/B
+//260701
+//1000
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first
