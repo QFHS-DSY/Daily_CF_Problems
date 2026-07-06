@@ -15,6 +15,16 @@ using ld=long double;
 
 inline void solve()
 {
+    int n;cin>>n;
+    int x=int(sqrt(n+1));
+    if (x*x!=n+1) cout<<-1<<endl;
+    else {
+        int cnt=1+(2*x-4);
+        cout<<cnt<<endl;
+        cout<<1<<" ";
+        for (int i=4;i<2*x;++i) cout<<i<<" ";
+        cout<<endl;
+    } 
 }
 
 signed main()
