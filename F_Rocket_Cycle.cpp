@@ -2,7 +2,6 @@
 //260902
 //1700
 #include <bits/stdc++.h>
-#define endl '\n'
 #define fi first
 #define se second
 #define INF 0x3f3f3f3f
@@ -20,20 +19,14 @@ using ull=unsigned long long;
 using i128=__int128_t;
 using u128=__uint128_t;
 
-inline void solve()
-{
-}
-
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
 
-    int T;
-    cin>>T;
-    while(T--)
-        solve();
+    int n;cin>>n;
+    
 
     return 0;
 }
