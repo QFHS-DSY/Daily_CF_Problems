@@ -20,20 +20,87 @@ using ull=unsigned long long;
 using i128=__int128_t;
 using u128=__uint128_t;
 
-inline void solve()
-{
-}
-
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
 
-    int T;
-    cin>>T;
-    while(T--)
-        solve();
+    // int s,k;
+    // while (cin>>s>>k) {
+    //     if (s==0 && k==0) break;
+    //     if (s==1) {
+    //         if (k==1) cout<<1<<endl;
+    //         else cout<<(k&1 ? k/2+1 : 1)<<endl;
+    //     } else if (k<=2*s) {
+    //         if (k==1) cout<<s<<endl;
+    //         else if (k==2) cout<<1<<endl;
+    //         else cout<<(k&1 ? 1 : k/2)<<endl;
+    //     } else if (k==2*s+1) cout<<2<<endl;
+    //     else if (k-2*s-1<=2*(s-2)) {
+    //         int x=k-2*s-1;
+    //         cout<<(x&1 ? 2 : x/2+2)<<endl;
+    //     }
+    // }
+
+    int a[105];
+    a[1]=2;
+    cout<<a[1]<<endl;
+    for (int i=2;i<=100;++i) {
+        int x=a[i-1],c=0;
+        for (int j=1;j<i;++j) {
+            if (x==a[j]) c++;
+        }
+        a[i]=c;
+        cout<<a[i]<<endl;
+    }
 
     return 0;
 }
+
+/*
+6
+
+2
+2
+3
+2
+4
+2
+5
+2
+6
+3
+3
+4
+3
+5
+3
+6
+4
+4
+5
+4
+6
+5
+5
+6
+
+5 4 3 
+
+2 2 2
+2 2 2
+3 3 3
+2 2
+4 4
+2 3
+5 3
+3 4
+3
+4
+3
+5
+4
+4
+5
+*/
