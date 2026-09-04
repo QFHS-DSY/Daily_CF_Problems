@@ -1,6 +1,6 @@
-//https://codeforces.com/gym/106682/problem/C
-//260903
-//1500
+//https://codeforces.com/gym/106682/problem/F
+//260904
+//2200
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first
@@ -20,27 +20,20 @@ using ull=unsigned long long;
 using i128=__int128_t;
 using u128=__uint128_t;
 
+inline void solve()
+{
+}
+
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
 
-    int n,s=0;cin>>n;
-    vector<int> a(n+1),b(n+1),am(n+1,INT_MIN),bm(n+1,INT_MAX);
-    for (int i=1;i<=n;++i) cin>>a[i];
-    for (int i=1;i<=n;++i) cin>>b[i];
+    int T;
+    cin>>T;
+    while(T--)
+        solve();
 
-    am[n]=a[n];
-    for (int i=n-1;i>=1;--i) am[i]=max(am[i+1],a[i]);
-    bm[n]=b[n];
-    for (int i=n-1;i>=1;--i) bm[i]=min(bm[i+1],b[i]);
-
-    for (int i=1;i<n;++i) {
-        if (bm[i+1]<=am[i]) s=max(s,bm[i+1]);
-        else s=max(s,am[i]);
-    }
-
-    cout<<s<<endl;
     return 0;
 }
