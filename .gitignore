@@ -2,6 +2,7 @@
 /.cph
 
 *.bin
+*.exe
 
 test.cpp
 test
