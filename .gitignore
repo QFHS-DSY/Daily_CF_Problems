@@ -1,4 +1,7 @@
 /.vscode
+/.cph
+
+*.bin
+
 test.cpp
-test.bin
 test
