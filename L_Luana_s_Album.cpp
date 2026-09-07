@@ -20,20 +20,45 @@ using ull=unsigned long long;
 using i128=__int128_t;
 using u128=__uint128_t;
 
-inline void solve()
-{
-}
-
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
 
-    int T;
-    cin>>T;
-    while(T--)
-        solve();
+    int n,m;cin>>n>>m;
+    vector<int> a(n),b;
+    for (auto &x : a) cin>>x;
 
+    b=a;
+    sort(b.begin(),b.end());
+    b.erase(unique(b.begin(),b.end()),b.end());
+    map<int,int> mp;
+    for (int i=0;i<b.size();++i) mp[b[i]]=i,b[i]=i;
+    for (int i=0;i<n;++i) a[i]=mp[a[i]];
+    map<int,int> mpl,mpr,f;
+    for (int i=0;i<n;++i) {
+        if (f[a[i]]) mpl[a[i]]=max(mpl[a[i]],mpl[a[i]+1]+1);
+        else mpl[a[i]]=1;
+        f[a[i]-1]=1;
+    }
+
+    f.clear();
+    for (int i=n-1;i>=0;--i) {
+        if (f[a[i]]) mpr[a[i]]=max(mpr[a[i]],mpr[a[i]+1]+1);
+        else mpr[a[i]]=1;
+        f[a[i]-1]=1;
+    }   
+
+    // for (int i=0;i<b.size();++i) 
+    //     cout<<b[i]<<' '<<mpl[b[i]]<<' '<<mpr[b[i]]<<endl;
+    
+    int i=0,ans=0;
+    while (i<b.size()) {
+        int mx=max(mpl[b[i]],mpr[b[i]]);
+        i+=mx,ans++;
+    }
+
+    cout<<b.size()<<' '<<ans<<endl;
     return 0;
 }
