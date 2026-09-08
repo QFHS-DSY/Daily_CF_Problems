@@ -11,7 +11,7 @@
 #define ctzll __builtin_ctzll // unsigned ll 最低位1的下标
 #define popcount __builtin_popcount
 #define popcountll __builtin_popcountll
-// #define int long long
+#define int long long
 using namespace std;
 using PII=pair<int,int>;
 using ll=long long;
@@ -26,33 +26,45 @@ signed main()
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
 
-    // int s,k;
-    // while (cin>>s>>k) {
-    //     if (s==0 && k==0) break;
-    //     if (s==1) {
-    //         if (k==1) cout<<1<<endl;
-    //         else cout<<(k&1 ? k/2+1 : 1)<<endl;
-    //     } else if (k<=2*s) {
-    //         if (k==1) cout<<s<<endl;
-    //         else if (k==2) cout<<1<<endl;
-    //         else cout<<(k&1 ? 1 : k/2)<<endl;
-    //     } else if (k==2*s+1) cout<<2<<endl;
-    //     else if (k-2*s-1<=2*(s-2)) {
-    //         int x=k-2*s-1;
-    //         cout<<(x&1 ? 2 : x/2+2)<<endl;
-    //     }
-    // }
+    int s,k;
+    while (cin>>s>>k) {
+        if (s==0 && k==0) break;
+        k --;
 
-    int a[105];
-    a[1]=2;
-    cout<<a[1]<<endl;
-    for (int i=2;i<=100;++i) {
-        int x=a[i-1],c=0;
-        for (int j=1;j<i;++j) {
-            if (x==a[j]) c++;
-        }
-        a[i]=c;
-        cout<<a[i]<<endl;
+		if (s * s <= k) {
+			k -= s * s;
+
+			int x = k / (2 * s), y = k % (2 * s);
+
+			if (y % 2 == 0) {
+				y /= 2;
+				cout << (y ? y : s) << '\n';
+			}
+			else cout << s + 1 + x << '\n';
+		}
+		else {
+			long long l = 0, r = s;
+
+			while (l <= r) {
+				long long mid = (l + r) / 2;
+
+				long long x = 2 * s - 1, y = x - 2 * (mid - 1);
+
+				if ((x + y) * mid / 2 > k) r = mid - 1;
+				else l = mid + 1;
+			}
+
+            long long x = 2 * s - 1, y = x - 2 * (r - 1);
+            k -= (x + y) * r / 2;
+
+            if (!k) cout << s << '\n';
+            else {
+                int x = (k - 1) / 2, y = (k - 1) % 2;
+
+                if (!y) cout << r + 1 + x << '\n';
+                else cout << r + 1 << '\n';
+            }
+		}
     }
 
     return 0;

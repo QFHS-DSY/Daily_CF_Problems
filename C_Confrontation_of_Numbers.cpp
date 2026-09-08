@@ -27,20 +27,16 @@ signed main()
     //cout<<fixed<<setprecision(15);
 
     int n,s=0;cin>>n;
-    vector<int> a(n+1),b(n+1),am(n+1,INT_MIN),bm(n+1,INT_MAX);
+    vector<int> a(n+1,0),b(n+1,0);
     for (int i=1;i<=n;++i) cin>>a[i];
     for (int i=1;i<=n;++i) cin>>b[i];
 
-    am[n]=a[n];
-    for (int i=n-1;i>=1;--i) am[i]=max(am[i+1],a[i]);
-    bm[n]=b[n];
-    for (int i=n-1;i>=1;--i) bm[i]=min(bm[i+1],b[i]);
+    int w1=a[n],w2=b[n];
+    for (int i = n - 1; i >= 0; i --) {
+		int nw1 = max(w1, min(a[i], w2)), nw2 = min(w2, max(b[i], w1));
+		w1 = nw1, w2 = nw2;
+	}
 
-    for (int i=1;i<n;++i) {
-        if (bm[i+1]<=am[i]) s=max(s,bm[i+1]);
-        else s=max(s,am[i]);
-    }
-
-    cout<<s<<endl;
+	cout << w1;
     return 0;
 }

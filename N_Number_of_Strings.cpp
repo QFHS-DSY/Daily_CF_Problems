@@ -62,7 +62,7 @@ signed main()
     for (int i=max(0ll,k-l+1);i<=min(k,r-1);++i) {
         j=k-i,cl=l-j,cr=r-i;
         int tmp=a*a*qpow(a-1,cl-1)%MOD*qpow(a-1,cr-1)%MOD;
-        tmp=tmp*C(l-1,j)%MOD*C(r-1,j)%MOD;
+        tmp=tmp*C(l-1,j)%MOD*C(r-1,i)%MOD;
         ans=(ans+tmp)%MOD;
     }
 
