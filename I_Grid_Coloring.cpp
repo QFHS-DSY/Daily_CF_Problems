@@ -20,8 +20,29 @@ using ld=long double;
 using i128=__int128_t;
 using PII=pair<int,int>;
 
+vector<string> s;
+vector<PII> ans;
+
 inline void solve()
 {
+    int n;cin>>n;
+    s.resize(n),ans.resize(n);
+    for (int i=0;i<n;++i) cin>>s[i];
+    for (int i=0;i<n;++i) {
+        int c=0,x=-1,y=-1;
+        for (int j=0;j<n;++j) {
+            if (s[i][j]=='V') c++;
+            else x=i+1,y=j+1;
+        }
+        if (c==n) {
+            cout<<n<<endl;
+            for (int j=1;j<=n;++j) cout<<i+1<<' '<<j<<endl;
+            return;
+        } else ans[i]={x,y};
+    }
+
+    cout<<n<<endl;
+    for (auto &[x,y] : ans) cout<<x<<' '<<y<<endl;
 }
 
 signed main()
