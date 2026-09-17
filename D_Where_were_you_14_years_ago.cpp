@@ -2,7 +2,7 @@
 //260916
 //1600
 #include <bits/stdc++.h>
-#define endl '\n'
+// #define endl '\n'
 #define fi first
 #define se second
 #define INF 0x3f3f3f3f
@@ -20,20 +20,43 @@ using ull=unsigned long long;
 using i128=__int128_t;
 using u128=__uint128_t;
 
-inline void solve()
-{
-}
-
 signed main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
 
-    int T;
-    cin>>T;
-    while(T--)
-        solve();
+    int n,t,id,c;cin>>n;
+    vector<int> a(n+1,0); //1T,2F,3M
+    map<int,int> mp;
 
+    cout<<"? "<<n;
+    for (int i=1;i<=n;++i) cout<<' '<<i;
+    cout<<endl;
+    cin>>c;
+
+    for (int i=1;i<=n;++i) {
+        cout<<"? "<<n-1;
+        for (int j=1;j<=n;++j) if (j!=i) cout<<' '<<j;
+        cout<<endl;
+        cin>>t;
+        if (t==c) a[i]=2,id=i,mp[i]=2;
+        else a[i]=1;
+    }
+
+    for (int i=1;i<=n;++i) {
+        if (i==id) continue;
+        cout<<"? "<<2<<' '<<i<<' '<<id<<endl;
+        cin>>t;
+        if (t==0 && !mp[i]) a[i]=3;
+    }
+
+    cout<<"! ";
+    for (int i=1;i<=n;++i) {
+        if (a[i]==1) cout<<'T';
+        else if (a[i]==2) cout<<'F';
+        else cout<<'M';
+    }
+    cout<<endl;
     return 0;
 }

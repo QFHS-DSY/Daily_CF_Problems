@@ -1,6 +1,6 @@
-//https://codeforces.com/gym/106706/problem/N
-//260916
-//1000
+//https://codeforces.com/contest/485/problem/E
+//260917
+//2600
 #include <bits/stdc++.h>
 #define endl '\n'
 #define fi first
@@ -22,18 +22,6 @@ using u128=__uint128_t;
 
 inline void solve()
 {
-    int n;cin>>n;
-    vector<PII> x(n),y(n);
-    for (int i=0;i<n;++i) cin>>x[i].fi,x[i].se=i;
-    for (int i=0;i<n;++i) cin>>y[i].fi,y[i].se=i;
-
-    sort(x.begin(),x.end(),[](PII p,PII q){return p.fi<q.fi;});
-    sort(y.begin(),y.end(),[](PII p,PII q){return p.fi>q.fi;});
-
-    vector<int> ans(n);
-    for (int i=0;i<n;++i) ans[x[i].se]=y[i].se+1;
-    for (int i=0;i<n;++i) cout<<ans[i]<<' ';
-    cout<<endl;
 }
 
 signed main()
