@@ -22,6 +22,23 @@ using u128=__uint128_t;
 
 inline void solve()
 {
+    int n,mx=0;cin>>n;
+    vector<int> a(2*n+1);
+    for (int i=1;i<=n;++i) cin>>a[i],a[i+n]=a[i],mx=max(mx,a[i]);
+
+    vector<int> mp1(mx+1,0),mp2(mx+1,0);
+    set<int> s(a.begin()+1,a.end());
+    for (int i=1;i<=2*n;++i) {
+        mp2[a[i]]=max(mp2[a[i]],i-mp1[a[i]]-1);
+        mp1[a[i]]=i;
+    }
+
+    int mi=INT_MAX;
+    for (auto p : s) {
+        mi=min(mi,mp2[p]);
+        //cout<<p<<' '<<mp2[p]<<endl;
+    }
+    cout<<n+mi<<endl;
 }
 
 signed main()
@@ -30,8 +47,8 @@ signed main()
     cin.tie(nullptr), cout.tie(nullptr);
     //cout<<fixed<<setprecision(15);
 
-    int T;
-    cin>>T;
+    int T=1;
+    //cin>>T;
     while(T--)
         solve();
 
